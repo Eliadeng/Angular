@@ -1,0 +1,25 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+span{
+ padding: 5px;
+ margin: 5px;
+}
+button{
+margin:5px
+}
+
+html[theme='dark-mode']{
+filter: invert(100%) hue-rotate(180deg);
+will-change: transform
+} 
+
+img {
+transition: color 300ms, background-color 300ms;
+will-change: transform;
+}
+
+html { background-color: #fff; }
+body { background-color: #fff; }
+
+body > .wrapper { background-color: #fff; }
