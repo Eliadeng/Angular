@@ -1,31 +1,43 @@
+import { DialogComponent } from './components/dialog/dialog.component';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from './services/admin.service';
 import { CompanyService } from './services/company.service';
 import { CustomerService } from './services/customer.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  public elem = document.body;
   public typeOfSystem: string;
   public constructor(
     private loginService: LoginService,
     private router: Router,
     private adminService: AdminService,
     private companyService: CompanyService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private dialog: MatDialog
   ) {}
   ngOnInit(): void {}
   title = 'CouponSystemWebsite';
 
-  html = document.getElementsByTagName('html')[0];
+   openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  /*html = document.getElementsByTagName('html')[0];
   toggleTheme = (theme) => {
     this.html.dataset.theme = theme;
-  };
+  };*/
 
   public resetDate(): void {
     this.loginService.email = '';
@@ -34,6 +46,16 @@ export class AppComponent implements OnInit {
     this.loginService.token = '';
     this.loginService.isLoggedIn = false;
     this.router.navigateByUrl('/login');
+  }
+
+  public changeToDark(): void {
+    document.body.style.backgroundColor = '#1e1d1d';
+    document.body.style.color = 'white';
+  }
+
+  public changeToLight(): void{
+    document.body.style.backgroundColor = '#fefefe';
+    document.body.style.color = 'black';
   }
 
   public changeColor(color: string): void {

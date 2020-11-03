@@ -1,3 +1,4 @@
+import { from } from 'rxjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -8,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
@@ -35,12 +36,16 @@ import { CouponsCategoryComponent } from './components/coupons-category/coupons-
 import { CouponsMaxPriceComponent } from './components/coupons-max-price/coupons-max-price.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { RegisterComponent } from './components/register/register.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -59,6 +64,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     CustomerPurchaseComponent,
     CouponsCategoryComponent,
     CouponsMaxPriceComponent,
+    RegisterComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,9 +92,18 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatTabsModule,
     MatButtonToggleModule,
     MatProgressBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDialogModule,
+    MatRadioModule,
+    NgbModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

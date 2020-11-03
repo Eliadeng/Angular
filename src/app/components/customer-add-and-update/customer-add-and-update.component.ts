@@ -35,8 +35,8 @@ export class CustomerAddAndUpdateComponent implements OnInit {
       this.adminService.getOneCustomer(this.id).subscribe(
         (res) => {
           this.customer.id = res.id;
-          this.customer.first_name = res.first_name;
-          this.customer.last_name = res.last_name;
+          this.customer.firstName = res.firstName;
+          this.customer.lastName = res.lastName;
           this.customer.email = res.email;
           this.customer.password = res.password;
         },

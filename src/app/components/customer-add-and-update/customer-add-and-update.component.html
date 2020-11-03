@@ -12,7 +12,7 @@
     <mat-form-field appearance="legacy">
       <mat-label>FirstName</mat-label>
       <input #customer_first="ngModel" required matInput placeholder="First Name" pattern="^[A-Z].*" minlength="2"
-        [(ngModel)]="customer.first_name" ngDefaultControl>
+        [(ngModel)]="customer.firstName" ngDefaultControl>
       <mat-icon matSuffix
         *ngIf="!customer_first.errors?.required && !customer_first.errors?.pattern && !customer_first.errors?.minlength">
         sentiment_very_satisfied</mat-icon>
@@ -24,7 +24,7 @@
   <p>
     <mat-form-field appearance="legacy">
       <mat-label>LastName</mat-label>
-      <input #customer_last="ngModel" matInput placeholder="Last Name" [(ngModel)]="customer.last_name" required
+      <input #customer_last="ngModel" matInput placeholder="Last Name" [(ngModel)]="customer.lastName" required
         minlength="2" pattern="^[A-Z].*" ngDefaultControl>
       <mat-icon matSuffix
         *ngIf="!customer_last.errors?.required && !customer_last.errors?.pattern && !customer_last.errors?.minlength">

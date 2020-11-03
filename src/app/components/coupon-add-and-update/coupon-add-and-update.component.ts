@@ -74,8 +74,8 @@ export class CouponAddAndUpdateComponent implements OnInit {
           this.coupon.categoryID = res.categoryID;
           this.coupon.title = res.title;
           this.coupon.description = res.description;
-          this.coupon.start_date = res.start_date;
-          this.coupon.end_date = res.end_date;
+          this.coupon.startDate = res.startDate;
+          this.coupon.endDate = res.endDate;
           this.coupon.amount = res.amount;
           this.coupon.price = res.price;
           this.coupon.image = res.image;
